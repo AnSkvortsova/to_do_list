@@ -1,0 +1,57 @@
+.blockName {
+  text-align: center;
+}
+.blockName_main {
+  width: 20%;
+  padding-left: 30px;
+  border-left: 1px solid #E7B3B2;
+  text-align: center;
+}
+.blockName_side {
+  display: grid;
+  transform: rotate(90deg);
+  grid-template-areas: 
+  'number title';
+  align-items: center;
+}
+.blockName_bottom {
+  display: grid;
+  grid-template-areas: 
+  'title'
+  'number';
+  gap: 15px;
+  text-align: start;
+}
+
+.blockName__title {
+  font-size: 16px;
+  line-height: 18px;
+  color: #000000;
+  margin: 0;
+  grid-area: title;
+}
+.blockName__title_main {
+  font-size: 24px;
+  line-height: 26px;
+}
+.blockName__title_side {
+  width: 200px;
+  color: #E6A91A;
+}
+
+.blockName__number {
+  font-size: 24px;
+  line-height: 26px;
+  color: #000000;
+  margin: 0;
+  grid-area: number;
+}
+.blockName__number_main {
+  font-size: 114px;
+  line-height: 116px;
+}
+.blockName__number_side {
+  font-size: 24px;
+  line-height: 26px;
+  color: #E6A91A;
+}

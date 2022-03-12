@@ -1,0 +1,8 @@
+.importentUrgentPage {
+  width: 80vw;
+  display: flex;
+  align-items: flex-end;
+}
+.importentUrgentPage:last-child {
+  align-items: flex-start;
+}

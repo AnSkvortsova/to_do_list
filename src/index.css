@@ -1,1 +1,10 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+
+@import url(./components/App/App.css);
+@import url(./components/GeneralBlock/GeneralBlock.css);
+@import url(./components/BlockName/BlockName.css);
+@import url(./components/Task/Task.css);
+
+@import url(./components/ImportentUrgentPage/ImportentUrgentPage.css);
 
