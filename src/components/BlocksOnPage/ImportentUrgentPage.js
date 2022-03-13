@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react';
 
-import { ImportentUrgent } from '../ImportentUrgent/ImportentUrgent';
-import { ImportentNotUrgent } from '../ImportentNotUrgent/ImportentNotUrgent';
-import { NotImportentUrgent } from '../NotImportentUrgent/NotImportentUrgent';
-import { NotImportentNotUrgent } from '../NotImportentNotUrgent/NotImportentNotUrgent';
+import { ImportentUrgent } from '../Blocks/ImportentUrgent';
+import { ImportentNotUrgent } from '../Blocks/ImportentNotUrgent';
+import { NotImportentUrgent } from '../Blocks/NotImportentUrgent';
+import { NotImportentNotUrgent } from '../Blocks/NotImportentNotUrgent';
 
 export class ImportentUrgentPage extends React.Component {
 
   render() {
     return (
       <Fragment>
-      <div className='importentUrgentPage'>
+      <div className='blocksOnPage'>
         <ImportentUrgent 
         isMain = {true}
         blockSize = 'generalBlock_L'
@@ -23,7 +23,7 @@ export class ImportentUrgentPage extends React.Component {
         typeBlock = 'side' />
       </div>
 
-      <div className='importentUrgentPage'>
+      <div className='blocksOnPage'>
         <NotImportentUrgent 
         isMain = {false}
         link = '/not-importent-urgent'

@@ -3,16 +3,16 @@
   padding: 20px 30px;
 }
 .generalBlock_importentUrgent {
-  background-color: #FFC1C2;
+  background-color: #FB6542;
 }
 .generalBlock_importentNotUrgent {
-  background-color: #F9E1B8;
+  background-color: #375E97;
 }
 .generalBlock_notImportentUrgent {
-  background-color: #DFF2B3;
+  background-color: #FFBB00;
 }
 .generalBlock_notImportentNotUrgent {
-  background-color: #B7D9FF;
+  background-color: #3F681C;
 }
 .generalBlock_L {
   width: 98%;
@@ -30,8 +30,22 @@
 .generalBlock__main {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .generalBlock__link {
   text-decoration: none;
+}
+
+.generalBlock__button {
+  width: 100px;
+  height: 100px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  background-image: url(../../images/add_btn.svg);
+  background-size: cover;
+  position: absolute;
+  top: 320px;
+  right: 0px;
 }

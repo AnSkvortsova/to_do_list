@@ -1,8 +1,8 @@
-.importentUrgentPage {
+.blocksOnPage {
   width: 80vw;
   display: flex;
   align-items: flex-end;
 }
-.importentUrgentPage:last-child {
+.blocksOnPage:last-child {
   align-items: flex-start;
 }

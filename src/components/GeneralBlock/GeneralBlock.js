@@ -12,6 +12,7 @@ export class GeneralBlock extends React.Component {
     this.link = props.link
     this.blockSize = props.blockSize
     this.typeBlock = props.typeBlock
+    this.title = props.title
   }
 
   render() {
@@ -20,9 +21,18 @@ export class GeneralBlock extends React.Component {
       {this.isMain 
         ? (<div className='generalBlock__main'>
           <Task />
-          <BlockName typeBlock = {this.typeBlock} />
+          <BlockName 
+          typeBlock = {this.typeBlock}
+          typeTasks = {this.typeTasks}
+          title = {this.title} />
+          <button className='generalBlock__button' type='button' aria-label='добавить задачу'></button>
         </div>)
-        : (<Link to={this.link} className='generalBlock__link'><BlockName typeBlock = {this.typeBlock} /></Link>)}
+        : (<Link to={this.link} className='generalBlock__link'>
+          <BlockName 
+          typeBlock = {this.typeBlock}
+          typeTasks = {this.typeTasks}
+          title = {this.title} />
+          </Link>)}
       </section>
     )
   };

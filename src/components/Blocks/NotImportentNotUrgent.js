@@ -15,6 +15,7 @@ export class NotImportentNotUrgent extends React.Component {
     return (
       <GeneralBlock
       typeTasks = 'notImportentNotUrgent'
+      title = 'Не Важное И Не Срочное'
       isMain = {this.isMain}
       link = {this.link}
       blockSize = {this.blockSize}

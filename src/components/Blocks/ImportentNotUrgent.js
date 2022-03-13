@@ -2,7 +2,7 @@ import React from 'react';
 
 import { GeneralBlock } from '../GeneralBlock/GeneralBlock';
 
-export class ImportentUrgent extends React.Component {
+export class ImportentNotUrgent extends React.Component {
   constructor(props) {
     super(props)
     this.isMain = props.isMain
@@ -14,7 +14,8 @@ export class ImportentUrgent extends React.Component {
   render() {
     return (
       <GeneralBlock
-      typeTasks = 'importentUrgent'
+      typeTasks = 'importentNotUrgent'
+      title = 'Важное, но Не Срочное'
       isMain = {this.isMain}
       link = {this.link}
       blockSize = {this.blockSize}

@@ -4,7 +4,6 @@
 .blockName_main {
   width: 20%;
   padding-left: 30px;
-  border-left: 1px solid #E7B3B2;
   text-align: center;
 }
 .blockName_side {
@@ -13,6 +12,7 @@
   grid-template-areas: 
   'number title';
   align-items: center;
+  padding-left: 10px;
 }
 .blockName_bottom {
   display: grid;
@@ -21,12 +21,28 @@
   'number';
   gap: 15px;
   text-align: start;
+  padding-left: 30px;
+}
+.blockName_importentUrgent {
+  color: #000000;
+  border-left: 1px dashed #4C3027;
+}
+.blockName_importentNotUrgent {
+  color: #c3cab7;
+  border-left: 1px dashed #c3cab7;
+}
+.blockName_notImportentUrgent {
+  color: #000000;
+  border-left: 1px dashed #4C3027;
+}
+.blockName_notImportentNotUrgent {
+  color: #c3cab7;
+  border-left: 1px dashed #c3cab7;
 }
 
 .blockName__title {
   font-size: 16px;
   line-height: 18px;
-  color: #000000;
   margin: 0;
   grid-area: title;
 }
@@ -36,22 +52,15 @@
 }
 .blockName__title_side {
   width: 200px;
-  color: #E6A91A;
 }
 
 .blockName__number {
   font-size: 24px;
   line-height: 26px;
-  color: #000000;
   margin: 0;
   grid-area: number;
 }
 .blockName__number_main {
   font-size: 114px;
   line-height: 116px;
-}
-.blockName__number_side {
-  font-size: 24px;
-  line-height: 26px;
-  color: #E6A91A;
 }
