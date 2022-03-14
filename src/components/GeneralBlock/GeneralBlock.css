@@ -1,5 +1,4 @@
 .generalBlock {
-  font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
   padding: 20px 30px;
 }
 .generalBlock_importentUrgent {
@@ -48,4 +47,9 @@
   position: absolute;
   top: 320px;
   right: 0px;
+}
+.generalBlock__button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity .2s linear;
 }

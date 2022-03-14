@@ -15,6 +15,10 @@ export class GeneralBlock extends React.Component {
     this.title = props.title
   }
 
+  handleAddTaskBtn() {
+    
+  }
+
   render() {
     return (
       <section className={`generalBlock generalBlock_${this.typeTasks} ${this.blockSize}`}>
@@ -25,7 +29,7 @@ export class GeneralBlock extends React.Component {
           typeBlock = {this.typeBlock}
           typeTasks = {this.typeTasks}
           title = {this.title} />
-          <button className='generalBlock__button' type='button' aria-label='добавить задачу'></button>
+          <button className='generalBlock__button' type='button' onClick={this.handleAddTaskBtn} aria-label='добавить задачу'></button>
         </div>)
         : (<Link to={this.link} className='generalBlock__link'>
           <BlockName 
