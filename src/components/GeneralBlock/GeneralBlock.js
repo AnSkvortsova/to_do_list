@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { Task } from '../Task/Task';
 import { BlockName } from '../BlockName/BlockName';
 
-export class GeneralBlock extends React.Component {
+import { openPopup } from '../../redux/action'
+
+class GeneralBlock extends React.Component {
   constructor(props) {
     super(props)
     this.typeTasks = props.typeTasks
@@ -15,9 +18,6 @@ export class GeneralBlock extends React.Component {
     this.title = props.title
   }
 
-  handleAddTaskBtn() {
-    
-  }
 
   render() {
     return (
@@ -29,7 +29,7 @@ export class GeneralBlock extends React.Component {
           typeBlock = {this.typeBlock}
           typeTasks = {this.typeTasks}
           title = {this.title} />
-          <button className='generalBlock__button' type='button' onClick={this.handleAddTaskBtn} aria-label='добавить задачу'></button>
+          <button className='generalBlock__button' type='button' onClick={this.props.openPopup} aria-label='добавить задачу'></button>
         </div>)
         : (<Link to={this.link} className='generalBlock__link'>
           <BlockName 
@@ -42,3 +42,8 @@ export class GeneralBlock extends React.Component {
   };
 };
 
+const mapDispatchToProps = {
+  openPopup
+}
+
+export default connect(null, mapDispatchToProps)(GeneralBlock);

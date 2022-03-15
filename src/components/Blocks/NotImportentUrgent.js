@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GeneralBlock } from '../GeneralBlock/GeneralBlock';
+import GeneralBlock from '../GeneralBlock/GeneralBlock';
 
 export class NotImportentUrgent extends React.Component {
   constructor(props) {
