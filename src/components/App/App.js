@@ -9,19 +9,39 @@ import { NotImportentNotUrgentPage } from '../BlocksOnPage/NotImportentNotUrgent
 
 import Popup from '../Popup/Popup';
 
-import { closePopup } from '../../redux/action';
+import { closePopup } from '../../redux/popup/action';
 
 class App extends React.Component {
-  componentDidMount() {
-    const closePopupByEscape = (evt) => {
-      console.log(evt)
-      if(evt.key === 'Escape') {
-        this.props.closePopup();
-      };
+  constructor(props) {
+    super(props);
+
+    this.closePopupByEscape = this.closePopupByEscape.bind(this);
+    this.closePopupByOverlay = this.closePopupByOverlay.bind(this);
+  }
+
+  closePopupByEscape(evt) {
+    if(evt.key === 'Escape') {
+      console.log(1);
+      this.props.closePopup();
     };
-    document.addEventListener('keydown', closePopupByEscape);
-    return document.removeEventListener('keydown', closePopupByEscape);
   };
+
+  closePopupByOverlay(evt) {
+    if(evt.target.classList.contains('popup_opend')) {
+      console.log(2);
+      this.props.closePopup();
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.closePopupByEscape);
+    document.addEventListener('click', this.closePopupByOverlay);
+  };
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.closePopupByEscape);
+    document.removeEventListener('click', this.closePopupByOverlay);
+  }
 
   render() {
     return (

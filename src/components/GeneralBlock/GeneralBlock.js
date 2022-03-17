@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Task } from '../Task/Task';
 import { BlockName } from '../BlockName/BlockName';
 
-import { openPopup } from '../../redux/action'
+import { openPopup } from '../../redux/popup/action'
 
 class GeneralBlock extends React.Component {
   constructor(props) {
@@ -18,13 +18,20 @@ class GeneralBlock extends React.Component {
     this.title = props.title
   }
 
-
   render() {
     return (
       <section className={`generalBlock generalBlock_${this.typeTasks} ${this.blockSize}`}>
       {this.isMain 
         ? (<div className='generalBlock__main'>
-          <Task />
+          <ul className='generalBlock__tasks'>
+            {!this.props.tasks === 0 ? null 
+              : this.props.tasks.map((task) => (
+                <Task 
+                key = {task.id}
+                task = {task.task} />
+                ))
+            }
+          </ul>
           <BlockName 
           typeBlock = {this.typeBlock}
           typeTasks = {this.typeTasks}
@@ -42,8 +49,14 @@ class GeneralBlock extends React.Component {
   };
 };
 
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks.tasks
+  };
+};
+
 const mapDispatchToProps = {
   openPopup
-}
+};
 
-export default connect(null, mapDispatchToProps)(GeneralBlock);
+export default connect(mapStateToProps, mapDispatchToProps)(GeneralBlock);
