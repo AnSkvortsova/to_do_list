@@ -6,3 +6,10 @@ export function addTask(task) {
     payload: task
   }
 }
+
+export function deleteTask(id) {
+  return {
+    type: types.DELETE_TASK,
+    id,
+  }
+}

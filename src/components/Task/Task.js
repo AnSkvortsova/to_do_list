@@ -2,14 +2,21 @@ import React, { Fragment } from 'react';
 
 export class Task extends React.Component {
   constructor(props) {
-    super(props)
-    this.task = props.task
-  }
+    super(props);
+    this.task = props.task;
+    this.id = props.id;
+    this.deleteTask = props.deleteTask;
+
+    this.handleDeleteButton = this.handleDeleteButton.bind(this);
+  };
+
+  handleDeleteButton() {
+    this.deleteTask(this.id);
+  };
 
   render() {
     return (
       <Fragment>
-      <ul className='tasks'>
         <li className='task'>
           <div className='task__item'>
             <button 
@@ -21,9 +28,9 @@ export class Task extends React.Component {
           <button 
           className='task__icon task__icon_delete'
           type='button'
+          onClick = {this.handleDeleteButton}
           aria-label='task delete'></button>
         </li>
-      </ul>
       <div className='tasks__decor'></div>
       </Fragment>
     )

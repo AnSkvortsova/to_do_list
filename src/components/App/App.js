@@ -10,6 +10,8 @@ import { NotImportentNotUrgentPage } from '../BlocksOnPage/NotImportentNotUrgent
 import Popup from '../Popup/Popup';
 
 import { closePopup } from '../../redux/popup/action';
+import { addTask } from '../../redux/tasks/action';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -54,14 +56,18 @@ class App extends React.Component {
             <Route path='/not-importent-not-urgent' element ={<NotImportentNotUrgentPage />} />
           </Routes>
         </main>
-        <Popup />
+        <Popup
+        isOpen = {this.props.isOpen}
+        closePopup = {this.props.closePopup}
+        addTask = {this.props.addTask} />
       </div>
     );
   };
 };
 
 const mapDispatchToProps = {
-  closePopup
+  closePopup,
+  addTask,
 };
 
 export default connect(null, mapDispatchToProps)(App);

@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addTask } from '../../redux/tasks/action';
-
 class Popup extends React.Component {
   constructor(props) {
     super(props);
-
+    this.closePopup = props.closePopup;
+    this.addTask = props.addTask;
     this.state = {
       task: '',
     };
@@ -18,9 +17,9 @@ class Popup extends React.Component {
     const newTask = {
       task, id: Date.now().toString() 
     };
-    this.props.addTask(newTask);
-    console.log(newTask);
+    this.addTask(newTask);
     this.setState({ task: ''});
+    this.closePopup();
   };
 
   handleInputChange = evt => {
@@ -44,14 +43,10 @@ class Popup extends React.Component {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isOpen: state.popup.isOpen
-  }
+    isOpen: state.popup.isOpen,
+  };
 };
 
-const mapDispatchToProps = {
-  addTask
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Popup);
+export default connect(mapStateToProps)(Popup);
