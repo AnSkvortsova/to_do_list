@@ -5,6 +5,7 @@ class Popup extends React.Component {
   constructor(props) {
     super(props);
     this.closePopup = props.closePopup;
+    this.addTypeTasks = props.addTypeTasks;
     this.addTask = props.addTask;
     this.state = {
       task: '',
@@ -17,9 +18,10 @@ class Popup extends React.Component {
     const newTask = {
       task, id: Date.now().toString() 
     };
-    this.addTask(newTask);
+    this.addTask(newTask, this.props.typeTasks);
     this.setState({ task: ''});
     this.closePopup();
+    this.addTypeTasks('');
   };
 
   handleInputChange = evt => {
@@ -46,6 +48,7 @@ class Popup extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isOpen: state.popup.isOpen,
+    typeTasks: state.popup.typeTasks,
   };
 };
 

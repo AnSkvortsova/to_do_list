@@ -9,7 +9,7 @@ import { NotImportentNotUrgentPage } from '../BlocksOnPage/NotImportentNotUrgent
 
 import Popup from '../Popup/Popup';
 
-import { closePopup } from '../../redux/popup/action';
+import { closePopup, addTypeTasks } from '../../redux/popup/action';
 import { addTask } from '../../redux/tasks/action';
 
 
@@ -23,14 +23,12 @@ class App extends React.Component {
 
   closePopupByEscape(evt) {
     if(evt.key === 'Escape') {
-      console.log(1);
       this.props.closePopup();
     };
   };
 
   closePopupByOverlay(evt) {
     if(evt.target.classList.contains('popup_opend')) {
-      console.log(2);
       this.props.closePopup();
     }
   }
@@ -59,6 +57,7 @@ class App extends React.Component {
         <Popup
         isOpen = {this.props.isOpen}
         closePopup = {this.props.closePopup}
+        addTypeTasks = {this.props.addTypeTasks}
         addTask = {this.props.addTask} />
       </div>
     );
@@ -67,6 +66,7 @@ class App extends React.Component {
 
 const mapDispatchToProps = {
   closePopup,
+  addTypeTasks,
   addTask,
 };
 

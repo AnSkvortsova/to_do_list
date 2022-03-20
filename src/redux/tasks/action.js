@@ -1,9 +1,10 @@
 import { types } from './types';
 
-export function addTask(task) {
+export function addTask(task, typeTasks) {
   return {
     type: types.ADD_TASK,
-    payload: task
+    payload: task,
+    typeTasks,
   }
 }
 

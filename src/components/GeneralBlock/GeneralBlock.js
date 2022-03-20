@@ -5,30 +5,50 @@ import { connect } from 'react-redux';
 import { Task } from '../Task/Task';
 import { BlockName } from '../BlockName/BlockName';
 
-import { openPopup } from '../../redux/popup/action';
+import { openPopup, addTypeTasks } from '../../redux/popup/action';
 import { deleteTask } from '../../redux/tasks/action';
 
 class GeneralBlock extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.typeTasks = props.typeTasks;
     this.isMain = props.isMain;
     this.link = props.link;
     this.blockSize = props.blockSize;
     this.typeBlock = props.typeBlock;
     this.title = props.title;
+    this.tasks = [];
+
+    this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
   };
 
+  handleAddTaskButton(evt) {
+    this.props.addTypeTasks(evt.target.dataset.type);
+    this.props.openPopup();
+  }
+
   render() {
+    if (this.typeTasks === 'importentUrgent') {
+      this.tasks = this.props.importentUrgentTasks;
+    }
+    else if (this.typeTasks === 'importentNotUrgent') {
+      this.tasks = this.props.importentNotUrgentTasks;
+    }
+    else if (this.typeTasks === 'notImportentUrgent') {
+      this.tasks = this.props.notImportentUrgentTasks;
+    }
+    else if (this.typeTasks === 'notImportentNotUrgent') {
+      this.tasks = this.props.notImportentNotUrgentTasks;
+    };
+
     return (
       <section className={`generalBlock generalBlock_${this.typeTasks} ${this.blockSize}`}>
       {this.isMain 
         ? (<div className='generalBlock__main'>
           <ul className='generalBlock__tasks'>
-            {this.props.tasks.length === 0 
+            {this.tasks.length === 0 
               ? <p className='generalBlock__noTasks'>Пока задач нет</p> 
-              : this.props.tasks.map((task) => (
+              : this.tasks.map((task) => (
                 <Task 
                 key = {task.id}
                 task = {task.task}
@@ -46,7 +66,8 @@ class GeneralBlock extends React.Component {
           <button 
           className='generalBlock__button' 
           type='button' 
-          onClick={this.props.openPopup} 
+          onClick={this.handleAddTaskButton} 
+          data-type = {this.typeTasks}
           aria-label='добавить задачу'></button>
         </div>)
 
@@ -64,12 +85,16 @@ class GeneralBlock extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.tasks.tasks,
+    importentUrgentTasks: state.tasks.importentUrgentTasks,
+    importentNotUrgentTasks: state.tasks.importentNotUrgentTasks,
+    notImportentUrgentTasks: state.tasks.notImportentUrgentTasks,
+    notImportentNotUrgentTasks: state.tasks.notImportentNotUrgentTasks,
   };
 };
 
 const mapDispatchToProps = {
   openPopup,
+  addTypeTasks,
   deleteTask,
 };
 
