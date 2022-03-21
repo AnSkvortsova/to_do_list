@@ -53,6 +53,7 @@ class GeneralBlock extends React.Component {
                 key = {task.id}
                 task = {task.task}
                 id = {task.id}
+                typeTask = {task.typeTask}
                 deleteTask = {this.props.deleteTask} />
                 ))
             }
@@ -61,7 +62,8 @@ class GeneralBlock extends React.Component {
           <BlockName 
           typeBlock = {this.typeBlock}
           typeTasks = {this.typeTasks}
-          title = {this.title} />
+          title = {this.title}
+          numberOfTasks = {this.tasks.length} />
 
           <button 
           className='generalBlock__button' 
@@ -75,7 +77,8 @@ class GeneralBlock extends React.Component {
           <BlockName 
           typeBlock = {this.typeBlock}
           typeTasks = {this.typeTasks}
-          title = {this.title} />
+          title = {this.title}
+          numberOfTasks = {this.tasks.length} />
           </Link>)
       }
       </section>

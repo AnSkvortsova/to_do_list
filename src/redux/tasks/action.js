@@ -8,9 +8,10 @@ export function addTask(task, typeTasks) {
   }
 }
 
-export function deleteTask(id) {
+export function deleteTask(id, typeTask) {
   return {
     type: types.DELETE_TASK,
     id,
+    typeTask,
   }
 }

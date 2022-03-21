@@ -16,7 +16,9 @@ class Popup extends React.Component {
     evt.preventDefault();
     const {task} = this.state;
     const newTask = {
-      task, id: Date.now().toString() 
+      task, 
+      id: Date.now().toString(),
+      typeTask: this.props.typeTasks,
     };
     this.addTask(newTask, this.props.typeTasks);
     this.setState({ task: ''});

@@ -5,13 +5,14 @@ export class Task extends React.Component {
     super(props);
     this.task = props.task;
     this.id = props.id;
+    this.typeTask = props.typeTask;
     this.deleteTask = props.deleteTask;
 
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
   };
 
   handleDeleteButton() {
-    this.deleteTask(this.id);
+    this.deleteTask(this.id, this.typeTask);
   };
 
   render() {

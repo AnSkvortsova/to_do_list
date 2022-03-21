@@ -21,7 +21,19 @@ export const tasksReducer = (state = initialState, action) => {
       }
       break;
     case types.DELETE_TASK:
-      return {...state, tasks: state.tasks.filter(task => task.id !== action.id)};
+      if (action.typeTask === 'importentUrgent') {
+        return {...state, importentUrgentTasks: state.importentUrgentTasks.filter(task => task.id !== action.id)};
+      }
+      if (action.typeTask === 'importentNotUrgent') {
+        return {...state, importentNotUrgentTasks: state.importentNotUrgentTasks.filter(task => task.id !== action.id)};
+      }
+      if (action.typeTask === 'notImportentUrgent') {
+        return {...state, notImportentUrgentTasks: state.notImportentUrgentTasks.filter(task => task.id !== action.id)};
+      }
+      if (action.typeTask === 'notImportentNotUrgent') {
+        return {...state, notImportentNotUrgentTasks: state.notImportentNotUrgentTasks.filter(task => task.id !== action.id)};
+      }
+      break;
     default: return state;
   };
 };
