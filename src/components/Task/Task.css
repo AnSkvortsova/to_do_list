@@ -29,6 +29,9 @@
 .task__icon_done {
   background-position: -42px;
 }
+.task__icon_edit {
+  background-position: -63px;
+}
 .task__icon_delete {
   background-position: -84px;
 }

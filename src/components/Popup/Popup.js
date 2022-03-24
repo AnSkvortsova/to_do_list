@@ -1,57 +1,35 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-class Popup extends React.Component {
+export class Popup extends React.Component {
   constructor(props) {
     super(props);
-    this.closePopup = props.closePopup;
-    this.addTypeTasks = props.addTypeTasks;
-    this.addTask = props.addTask;
+    this.onSubmit = props.onSubmit;
+    this.onInputChange = props.onInputChange;
     this.state = {
-      task: '',
+      task: props.task,
+      isOpen: props.isOpen,
     };
   };
 
-  handleSubmit = evt => {
-    evt.preventDefault();
-    const {task} = this.state;
-    const newTask = {
-      task, 
-      id: Date.now().toString(),
-      typeTask: this.props.typeTasks,
+  static getDerivedStateFromProps(props) {
+      return {
+      task: props.task,
+      isOpen: props.isOpen,
     };
-    this.addTask(newTask, this.props.typeTasks);
-    this.setState({ task: ''});
-    this.closePopup();
-    this.addTypeTasks('');
-  };
-
-  handleInputChange = evt => {
-    this.setState({
-      task: evt.target.value
-    })
   };
 
   render() {
     return (
-      <div className={`popup ${this.props.isOpen ? 'popup_opend' : null}`}>
-        <form className='popup__form' onSubmit={this.handleSubmit}>
+      <div className={`popup ${this.state.isOpen ? 'popup_opend' : null}`}>
+        <form className='popup__form' onSubmit={this.onSubmit}>
           <input 
           className='popup__input'
           value = {this.state.task}
-          onChange = {this.handleInputChange}
+          onChange = {this.onInputChange}
           placeholder='Задача'/>
         </form>
       </div>
     )
-  }
-};
-
-const mapStateToProps = (state) => {
-  return {
-    isOpen: state.popup.isOpen,
-    typeTasks: state.popup.typeTasks,
   };
 };
 
-export default connect(mapStateToProps)(Popup);

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Task } from '../Task/Task';
 import { BlockName } from '../BlockName/BlockName';
 
-import { openPopup, addTypeTasks } from '../../redux/popup/action';
+import { openAddPopup, openEditPopup, addTypeTasks, setOldTask } from '../../redux/popup/action';
 import { deleteTask } from '../../redux/tasks/action';
 
 class GeneralBlock extends React.Component {
@@ -17,43 +17,50 @@ class GeneralBlock extends React.Component {
     this.blockSize = props.blockSize;
     this.typeBlock = props.typeBlock;
     this.title = props.title;
-    this.tasks = [];
+    this.state = {
+      tasks: [],
+    };
 
     this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
   };
 
   handleAddTaskButton(evt) {
     this.props.addTypeTasks(evt.target.dataset.type);
-    this.props.openPopup();
-  }
+    this.props.openAddPopup();
+  };
+
+  static getDerivedStateFromProps(props) {
+    if (props.typeTasks === 'importentUrgent') {
+      return {tasks: props.importentUrgentTasks};
+    }
+    else if (props.typeTasks === 'importentNotUrgent') {
+      return {tasks: props.importentNotUrgentTasks};
+    }
+    else if (props.typeTasks === 'notImportentUrgent') {
+      return {tasks: props.notImportentUrgentTasks};
+    }
+    else if (props.typeTasks === 'notImportentNotUrgent') {
+      return {tasks: props.notImportentNotUrgentTasks};
+    };
+  };
 
   render() {
-    if (this.typeTasks === 'importentUrgent') {
-      this.tasks = this.props.importentUrgentTasks;
-    }
-    else if (this.typeTasks === 'importentNotUrgent') {
-      this.tasks = this.props.importentNotUrgentTasks;
-    }
-    else if (this.typeTasks === 'notImportentUrgent') {
-      this.tasks = this.props.notImportentUrgentTasks;
-    }
-    else if (this.typeTasks === 'notImportentNotUrgent') {
-      this.tasks = this.props.notImportentNotUrgentTasks;
-    };
-
     return (
       <section className={`generalBlock generalBlock_${this.typeTasks} ${this.blockSize}`}>
       {this.isMain 
         ? (<div className='generalBlock__main'>
           <ul className='generalBlock__tasks'>
-            {this.tasks.length === 0 
+            {this.state.tasks.length === 0 
               ? <p className='generalBlock__noTasks'>Пока задач нет</p> 
-              : this.tasks.map((task) => (
+              : this.state.tasks.map((task) => (
                 <Task 
                 key = {task.id}
                 task = {task.task}
                 id = {task.id}
                 typeTask = {task.typeTask}
+                openEditPopup = {this.props.openEditPopup}
+                addTypeTasks = {this.props.addTypeTasks}
+                setOldTask = {this.props.setOldTask}
                 deleteTask = {this.props.deleteTask} />
                 ))
             }
@@ -63,7 +70,7 @@ class GeneralBlock extends React.Component {
           typeBlock = {this.typeBlock}
           typeTasks = {this.typeTasks}
           title = {this.title}
-          numberOfTasks = {this.tasks.length} />
+          numberOfTasks = {this.state.tasks.length} />
 
           <button 
           className='generalBlock__button' 
@@ -78,7 +85,7 @@ class GeneralBlock extends React.Component {
           typeBlock = {this.typeBlock}
           typeTasks = {this.typeTasks}
           title = {this.title}
-          numberOfTasks = {this.tasks.length} />
+          numberOfTasks = {this.state.tasks.length} />
           </Link>)
       }
       </section>
@@ -96,8 +103,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  openPopup,
+  openAddPopup,
+  openEditPopup,
   addTypeTasks,
+  setOldTask,
   deleteTask,
 };
 

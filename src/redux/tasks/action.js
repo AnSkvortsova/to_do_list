@@ -5,13 +5,22 @@ export function addTask(task, typeTasks) {
     type: types.ADD_TASK,
     payload: task,
     typeTasks,
-  }
-}
+  };
+};
+
+export function editTask(task, id, typeTask) {
+  return {
+    type: types.EDIT_TASK,
+    payload: task,
+    id,
+    typeTask,
+  };
+};
 
 export function deleteTask(id, typeTask) {
   return {
     type: types.DELETE_TASK,
     id,
     typeTask,
-  }
-}
+  };
+};

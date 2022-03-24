@@ -11,14 +11,14 @@ export class BlockName extends React.Component {
     };
   };
 
-  shouldComponentUpdate(nextState) {
-    return this.state.numberOfTasks !== nextState.numberOfTasks;
-  };
-
   static getDerivedStateFromProps(props) {
     return {
       numberOfTasks: props.numberOfTasks,
     };
+  };
+
+  shouldComponentUpdate(nextState) {
+    return this.state.numberOfTasks !== nextState.numberOfTasks;
   };
 
   render() {

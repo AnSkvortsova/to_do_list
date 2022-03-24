@@ -7,10 +7,12 @@ import { ImportentNotUrgentPage } from '../BlocksOnPage/ImportentNotUrgentPage';
 import { NotImportentUrgentPage } from '../BlocksOnPage/NotImportentUrgentPage';
 import { NotImportentNotUrgentPage } from '../BlocksOnPage/NotImportentNotUrgentPage';
 
-import Popup from '../Popup/Popup';
+import AddPopup from '../Popup/AddPopup';
+import EditPopup from '../Popup/EditPopup';
 
-import { closePopup, addTypeTasks } from '../../redux/popup/action';
-import { addTask } from '../../redux/tasks/action';
+
+import { closePopup, setOldTask } from '../../redux/popup/action';
+import { addTask, editTask } from '../../redux/tasks/action';
 
 
 class App extends React.Component {
@@ -54,11 +56,13 @@ class App extends React.Component {
             <Route path='/not-importent-not-urgent' element ={<NotImportentNotUrgentPage />} />
           </Routes>
         </main>
-        <Popup
-        isOpen = {this.props.isOpen}
+        <AddPopup
         closePopup = {this.props.closePopup}
-        addTypeTasks = {this.props.addTypeTasks}
         addTask = {this.props.addTask} />
+        <EditPopup 
+        closePopup = {this.props.closePopup}
+        editTask = {this.props.editTask}
+        setOldTask = {this.props.setOldTask} />
       </div>
     );
   };
@@ -66,8 +70,9 @@ class App extends React.Component {
 
 const mapDispatchToProps = {
   closePopup,
-  addTypeTasks,
   addTask,
+  editTask,
+  setOldTask,
 };
 
 export default connect(null, mapDispatchToProps)(App);
