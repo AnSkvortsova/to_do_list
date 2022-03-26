@@ -6,14 +6,15 @@ import { Popup } from './Popup';
 class EditPopup extends React.Component {
   constructor(props) {
     super(props);
+
     this.closePopup = props.closePopup;
     this.editTask = props.editTask;
     this.setOldTask = props.setOldTask;
+
     this.state = {
-      task: this.props.oldTask,
+      task: props.oldTask,
     };
   };
-
 
   handleSubmit = evt => {
     evt.preventDefault();
@@ -25,20 +26,23 @@ class EditPopup extends React.Component {
 
   handleInputChange = evt => {
     this.setState({
-      task: evt.target.value
+      task: evt.target.value,
     })
   };
 
-
-  //shouldComponentUpdate(nextState) {
-  //  return this.state.task !== nextState.task;
-  //};
-//
   //static getDerivedStateFromProps(props) {
   //  return {
-  //    task: props.oldTask
+  //    task: props.oldTask,
   //  };
   //};
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.oldTask !== this.props.oldTask) {
+      this.setState({
+        task: nextProps.oldTask
+      })
+    };
+  };
 
   render(){
     return (
