@@ -18,7 +18,14 @@ export class Task extends React.Component {
   };
 
   handleChackedButton(evt) {
-    console.log(evt.target)
+    if (evt.target.classList.contains('task__icon_inProgress')) {
+      evt.target.classList.remove('task__icon_inProgress');
+      evt.target.classList.add('task__icon_done');
+    } else if (evt.target.classList.contains('task__icon_done')) {
+      evt.target.classList.remove('task__icon_done');
+    } else if (evt.target.classList.contains('task__icon')) {
+      evt.target.classList.add('task__icon_inProgress');
+    }
   };
 
   handleDeleteButton() {
@@ -46,6 +53,7 @@ export class Task extends React.Component {
             <button 
             className='task__icon'
             type='button'
+            onClick = {this.handleChackedButton}
             aria-label='check task'></button>
 
             <p className='task__text'>{this.state.task}</p>

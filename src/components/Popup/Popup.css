@@ -42,3 +42,12 @@
 .popup__input::placeholder {
   color: #c3cab7;
 }
+
+@media (max-width: 570px) {
+  .popup__form {
+    width: 250px;
+  }
+  .popup__input {
+    width: 200px;
+  }
+}

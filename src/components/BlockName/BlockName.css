@@ -2,9 +2,9 @@
   text-align: center;
 }
 .blockName_main {
-  width: 20%;
   padding-left: 30px;
   text-align: center;
+  flex: auto;
 }
 .blockName_side {
   display: grid;
@@ -63,4 +63,31 @@
 .blockName__number_main {
   font-size: 114px;
   line-height: 116px;
+}
+
+@media (max-width: 740px) {
+  .blockName__number_main {
+    font-size: 70px;
+    line-height: 74px;
+  }
+  .blockName__title_main {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .blockName_bottom {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 570px) {
+  .blockName_main {
+    text-align: inherit;
+    padding-left: 0;
+    border-left: none;
+    border-bottom: 1px dashed #000000;
+  }
+  .blockName__title {
+    font-size: 14px;
+    line-height: 15px;
+  }
 }

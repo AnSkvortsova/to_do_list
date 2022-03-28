@@ -66,18 +66,20 @@ class GeneralBlock extends React.Component {
             }
           </ul>
 
-          <BlockName 
-          typeBlock = {this.typeBlock}
-          typeTasks = {this.typeTasks}
-          title = {this.title}
-          numberOfTasks = {this.state.tasks.length} />
-
-          <button 
-          className='generalBlock__button' 
-          type='button' 
-          onClick={this.handleAddTaskButton} 
-          data-type = {this.typeTasks}
-          aria-label='добавить задачу'></button>
+          <div className='generalBlock__info'>
+            <BlockName 
+            typeBlock = {this.typeBlock}
+            typeTasks = {this.typeTasks}
+            title = {this.title}
+            numberOfTasks = {this.state.tasks.length} />
+  
+            <button 
+            className='generalBlock__button' 
+            type='button' 
+            onClick={this.handleAddTaskButton} 
+            data-type = {this.typeTasks}
+            aria-label='добавить задачу'></button>
+          </div>
         </div>)
 
         : (<Link to={this.link} className='generalBlock__link'>

@@ -6,3 +6,9 @@
 .blocksOnPage:last-child {
   align-items: flex-start;
 }
+
+@media (max-width: 570px) {
+  .blocksOnPage {
+    width: 100vw;
+  }
+}
