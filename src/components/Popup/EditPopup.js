@@ -30,18 +30,16 @@ class EditPopup extends React.Component {
     })
   };
 
-  //static getDerivedStateFromProps(props) {
-  //  return {
-  //    task: props.oldTask,
-  //  };
-  //};
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.oldTask !== this.props.oldTask) {
-      this.setState({
-        task: nextProps.oldTask
-      })
-    };
+  static getDerivedStateFromProps(props, state) {
+    console.log ('props ', props.oldTask)
+    console.log ('state ', state.task)
+    if (state.task === '') {
+      return {task: props.oldTask};
+    } else if (state.task !== '' && state.task !== props.oldTask) {
+      return {task: state.task};
+    } else {
+      return null;
+    }
   };
 
   render(){

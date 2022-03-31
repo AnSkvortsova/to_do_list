@@ -17,10 +17,6 @@ export class BlockName extends React.Component {
     };
   };
 
-  shouldComponentUpdate(nextState) {
-    return this.state.numberOfTasks !== nextState.numberOfTasks;
-  };
-
   render() {
     return (
       <div className={`blockName blockName_${this.typeBlock} blockName_${this.typeTasks}`}>
