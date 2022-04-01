@@ -20,8 +20,10 @@ class AddPopup extends React.Component {
       task, 
       id: Date.now().toString(),
       typeTask: this.props.typeTasks,
+      inProgress: false,
+      isDone: false,
     };
-    this.addTask(newTask, this.props.typeTasks);
+    this.addTask(newTask);
     this.setState({ task: ''});
     this.closePopup();
   };

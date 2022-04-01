@@ -18,7 +18,7 @@ class EditPopup extends React.Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    this.editTask(this.state.task, this.props.oldId, this.props.typeTasks);
+    this.editTask(this.state.task, this.props.oldId);
     this.setOldTask('', '');
     this.setState({ task: ''});
     this.closePopup();
@@ -31,15 +31,13 @@ class EditPopup extends React.Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    console.log ('props ', props.oldTask)
-    console.log ('state ', state.task)
     if (state.task === '') {
       return {task: props.oldTask};
     } else if (state.task !== '' && state.task !== props.oldTask) {
       return {task: state.task};
     } else {
       return null;
-    }
+    };
   };
 
   render(){

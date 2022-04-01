@@ -7,29 +7,29 @@ export class Task extends React.Component {
     this.openEditPopup = props.openEditPopup;
     this.addTypeTasks = props.addTypeTasks;
     this.setOldTask = props.setOldTask;
+    this.progressTask = props.progressTask;
+    this.completeTask = props.completeTask;
     this.deleteTask = props.deleteTask;
-    this.state = {
-      task: props.task,
-      id: props.id,
-    }
+    this.state = {};
 
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
     this.handleEditButton = this.handleEditButton.bind(this);
+    this.handleChackedButton = this.handleChackedButton.bind(this);
   };
 
-  handleChackedButton(evt) {
-    if (evt.target.classList.contains('task__icon_inProgress')) {
-      evt.target.classList.remove('task__icon_inProgress');
-      evt.target.classList.add('task__icon_done');
-    } else if (evt.target.classList.contains('task__icon_done')) {
-      evt.target.classList.remove('task__icon_done');
-    } else if (evt.target.classList.contains('task__icon')) {
-      evt.target.classList.add('task__icon_inProgress');
+  handleChackedButton() {
+    if (this.state.inProgress === false && this.state.isDone === false) {
+      this.progressTask(this.state.id);
+    } else if (this.state.inProgress === true && this.state.isDone === false) {
+      this.progressTask(this.state.id);
+      this.completeTask(this.state.id);
+    } else if (this.state.inProgress === false && this.state.isDone === true) {
+      this.completeTask(this.state.id);
     }
   };
 
   handleDeleteButton() {
-    this.deleteTask(this.state.id, this.typeTask);
+    this.deleteTask(this.state.id);
   };
 
   handleEditButton(evt) {
@@ -42,16 +42,21 @@ export class Task extends React.Component {
     return {
       task: props.task,
       id: props.id,
+      inProgress: props.inProgress,
+      isDone: props.isDone,
     };
   };
 
   render() {
+    console.log(this.state)
     return (
       <Fragment>
         <li className='task'>
           <div className='task__item'>
             <button 
-            className='task__icon'
+            className={`task__icon 
+              ${this.state.inProgress ? 'task__icon_inProgress' : ''}
+              ${this.state.isDone ? 'task__icon_done' : ''}`}
             type='button'
             onClick = {this.handleChackedButton}
             aria-label='check task'></button>

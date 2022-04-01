@@ -1,26 +1,37 @@
 import { types } from './types';
 
-export function addTask(task, typeTasks) {
+export function addTask(task) {
   return {
     type: types.ADD_TASK,
     payload: task,
-    typeTasks,
   };
 };
 
-export function editTask(task, id, typeTask) {
+export function editTask(task, id) {
   return {
     type: types.EDIT_TASK,
     payload: task,
     id,
-    typeTask,
   };
 };
 
-export function deleteTask(id, typeTask) {
+export function progressTask(id) {
+  return {
+    type: types.PROPGRESS_TASK,
+    id,
+  };
+};
+
+export function completeTask(id) {
+  return {
+    type: types.COMPLETE_TASK,
+    id,
+  };
+};
+
+export function deleteTask(id) {
   return {
     type: types.DELETE_TASK,
     id,
-    typeTask,
   };
 };

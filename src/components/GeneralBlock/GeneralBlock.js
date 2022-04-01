@@ -6,7 +6,7 @@ import { Task } from '../Task/Task';
 import { BlockName } from '../BlockName/BlockName';
 
 import { openAddPopup, openEditPopup, addTypeTasks, setOldTask } from '../../redux/popup/action';
-import { deleteTask } from '../../redux/tasks/action';
+import { progressTask, completeTask, deleteTask } from '../../redux/tasks/action';
 
 class GeneralBlock extends React.Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class GeneralBlock extends React.Component {
     };
 
     this.handleAddTaskButton = this.handleAddTaskButton.bind(this);
+    this.filterByTypeTask = this.filterByTypeTask.bind(this);
   };
 
   handleAddTaskButton(evt) {
@@ -29,40 +30,41 @@ class GeneralBlock extends React.Component {
     this.props.openAddPopup();
   };
 
-  static getDerivedStateFromProps(props) {
-    if (props.typeTasks === 'importentUrgent') {
-      return {tasks: props.importentUrgentTasks};
-    }
-    else if (props.typeTasks === 'importentNotUrgent') {
-      return {tasks: props.importentNotUrgentTasks};
-    }
-    else if (props.typeTasks === 'notImportentUrgent') {
-      return {tasks: props.notImportentUrgentTasks};
-    }
-    else if (props.typeTasks === 'notImportentNotUrgent') {
-      return {tasks: props.notImportentNotUrgentTasks};
+  filterByTypeTask(task) {
+    if (task.typeTask === this.typeTasks) {
+      return task;
     };
   };
 
+  static getDerivedStateFromProps(props) {
+    return {tasks: props.tasks}
+  };
+  
   render() {
+    const tasks = this.state.tasks.filter(this.filterByTypeTask);
+
     return (
       <section className={`generalBlock generalBlock_${this.typeTasks} ${this.blockSize}`}>
       {this.isMain 
         ? (<div className='generalBlock__main'>
           <ul className='generalBlock__tasks'>
-            {this.state.tasks.length === 0 
+            {tasks.length === 0 
               ? <p className='generalBlock__noTasks'>Пока задач нет</p> 
-              : this.state.tasks.map((task) => (
+              : tasks.map((task) => ( 
                 <Task 
                 key = {task.id}
                 task = {task.task}
                 id = {task.id}
+                inProgress = {task.inProgress}
+                isDone = {task.isDone}
                 typeTask = {task.typeTask}
                 openEditPopup = {this.props.openEditPopup}
                 addTypeTasks = {this.props.addTypeTasks}
                 setOldTask = {this.props.setOldTask}
+                progressTask = {this.props.progressTask}
+                completeTask = {this.props.completeTask}
                 deleteTask = {this.props.deleteTask} />
-                ))
+              ))
             }
           </ul>
 
@@ -71,7 +73,7 @@ class GeneralBlock extends React.Component {
             typeBlock = {this.typeBlock}
             typeTasks = {this.typeTasks}
             title = {this.title}
-            numberOfTasks = {this.state.tasks.length} />
+            numberOfTasks = {tasks.length} />
   
             <button 
             className='generalBlock__button' 
@@ -87,7 +89,7 @@ class GeneralBlock extends React.Component {
           typeBlock = {this.typeBlock}
           typeTasks = {this.typeTasks}
           title = {this.title}
-          numberOfTasks = {this.state.tasks.length} />
+          numberOfTasks = {tasks.length} />
           </Link>)
       }
       </section>
@@ -97,10 +99,7 @@ class GeneralBlock extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    importentUrgentTasks: state.tasks.importentUrgentTasks,
-    importentNotUrgentTasks: state.tasks.importentNotUrgentTasks,
-    notImportentUrgentTasks: state.tasks.notImportentUrgentTasks,
-    notImportentNotUrgentTasks: state.tasks.notImportentNotUrgentTasks,
+    tasks: state.tasks.tasks,
   };
 };
 
@@ -109,6 +108,8 @@ const mapDispatchToProps = {
   openEditPopup,
   addTypeTasks,
   setOldTask,
+  progressTask,
+  completeTask,
   deleteTask,
 };
 
