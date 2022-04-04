@@ -6,3 +6,6 @@
 
 ## Технологии
 React.js, Redux, CSS
+
+## Вид
+![alt text](../../screenshots/to_do_list.png "вид приложения")
