@@ -20,7 +20,7 @@ export class Popup extends React.Component {
 
   render() {
     return (
-      <div className={`popup ${this.state.isOpen ? 'popup_opend' : null}`}>
+      <div className={`popup ${this.state.isOpen ? 'popup_opend' : ''}`}>
         <form className='popup__form' onSubmit={this.onSubmit}>
           <input 
           className='popup__input'

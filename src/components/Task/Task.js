@@ -48,7 +48,6 @@ export class Task extends React.Component {
   };
 
   render() {
-    console.log(this.state)
     return (
       <Fragment>
         <li className='task'>
